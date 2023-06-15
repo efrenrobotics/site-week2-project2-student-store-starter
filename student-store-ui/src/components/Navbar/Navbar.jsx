@@ -1,10 +1,12 @@
-import * as React from "react"
-import "./Navbar.css"
+import React from "react";
+import Logo from "../Logo/Logo";
 
-export default function Navbar() {
+const Navbar = () => {
   return (
-    <nav className="navbar">
-      <p>Navbar</p>
-    </nav>
-  )
-}
+    <div>
+      <Logo />
+    </div>
+  );
+};
+
+export default Navbar;
