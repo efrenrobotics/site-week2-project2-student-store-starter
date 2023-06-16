@@ -1,0 +1,34 @@
+.product-card {
+  height: 350px;
+  width: 250px;
+  background: var(--pure-white);
+  display: flex;
+  flex-direction: column;
+  border: solid 1px var(--border-color);
+}
+
+.product-card .media {
+  height: 250px;
+  width: 100%;
+}
+
+.product-card .product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-top: solid 1px var(--border-color);
+}
+
+.product-card .main-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+}
+
+.product-card .actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 12px;
+}

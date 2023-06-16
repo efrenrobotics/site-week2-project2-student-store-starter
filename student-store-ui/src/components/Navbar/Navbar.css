@@ -1,0 +1,35 @@
+.navbar {
+  background-color: #f2f2f2;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.navbar-routes {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.navbar-routes li a {
+  text-decoration: none;
+  color: #333;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-routes li a:hover {
+  background-color: #ccc;
+}
+
+.navbar-routes li a.active {
+  background-color: #999;
+  color: #fff;
+}

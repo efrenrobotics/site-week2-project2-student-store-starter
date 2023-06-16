@@ -94,46 +94,40 @@ export default function App() {
   return (
     <div className="app">
       <BrowserRouter>
-        {/* SETTING UP ROUTES */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about-us" />
-          <Route path="/contact-us" />
-          <Route path="/buy-now" />
-          <Route path="/product/:productId" element={<ProductDetail />} />
-          <Route path="*" />
-        </Routes>
         {/* ALWAYS RENDER NAVBAR & SIDEBAR */}
+        <Navbar />
 
-        <Sidebar
-          handleOnToggle={handleOnToggle}
-          isOpen={isOpen}
-          products={products}
-        />
-        <main>
-          <Footer />
-
-          <div className="feed">
-            <Navbar />
-            <ul className="navbar-routes">
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about-us">About Us</Link>
-              </li>
-              <li>
-                <Link to="/contact-us">Contact Us</Link>
-              </li>
-              <li>
-                <Link to="/buy-now">Buy Now</Link>
-              </li>
-            </ul>
-            {products.map((item) => (
-              <p key={item.id}>{item.name}</p>
-            ))}
+        {/* Hero */}
+        {/* Sub Nav Bar - Categories*/}
+        {/* Home - Product Grid */}
+        <div className="container">
+          <Sidebar
+            handleOnToggle={handleOnToggle}
+            isOpen={isOpen}
+            products={products}
+          />
+          <div className="main-content">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Home
+                    products={products}
+                    handleAddItemToCart={handleAddItemToCart}
+                    handleRemoveItemToCart={handleRemoveItemFromCart}
+                  />
+                }
+              />
+              <Route path="/about-us" />
+              <Route path="/contact-us" />
+              <Route path="/buy-now" />
+              <Route path="/product/:productId" element={<ProductDetail />} />
+              <Route path="*" />
+            </Routes>
           </div>
-        </main>
+        </div>
+
+        <Footer />
       </BrowserRouter>
     </div>
   );

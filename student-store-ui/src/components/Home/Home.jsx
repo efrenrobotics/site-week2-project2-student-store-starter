@@ -2,14 +2,19 @@ import * as React from "react";
 import { useState } from "react";
 import "./Home.css";
 import Hero from "../Hero/Hero";
-import ProductsGrid from "../ProductsGrid/ProductsGrid";
+import ProductGrid from "../ProductGrid/ProductGrid";
 
-export default function Home() {
-  const [products, setProducts] = useState([]);
+const Home = ({ products, handleAddItemToCart, handleRemoveItemToCart }) => {
   return (
     <div className="home">
       <Hero />
-      <ProductsGrid products={products} />
+      <ProductGrid
+        products={products}
+        handleAddItemToCart={handleAddItemToCart}
+        handleRemoveItemToCart={handleRemoveItemToCart}
+      />
     </div>
   );
-}
+};
+
+export default Home;

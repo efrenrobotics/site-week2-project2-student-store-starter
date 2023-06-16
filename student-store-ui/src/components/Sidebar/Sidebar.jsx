@@ -1,6 +1,6 @@
 import * as React from "react";
-import "./Sidebar.css";
 import { useState } from "react";
+import "./Sidebar.css";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
@@ -28,10 +28,10 @@ const SideBar = ({
 
   return (
     <div className="container">
-      <ShoppingCart />
-      <CheckoutForm />
       <section className="sidebar">
         <div className={navClass}>
+          <ShoppingCart />
+          <CheckoutForm />
           <p>Sidebar</p>
           <p>Open State: {navClass}</p>
           <button className="toggle-button" onClick={handleOnToggle}>
