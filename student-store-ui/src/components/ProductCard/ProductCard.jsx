@@ -12,17 +12,17 @@ const ProductCard = ({
 }) => {
   return (
     <div className="product-card">
+      <div className="media">
+        <Link to={`/products/${product.id}`}>
+          <img src={product.image} alt={product.description} />
+        </Link>
+      </div>
+
       <h3 className="product-name">{product.name}</h3>
       <h4 className="proudct-price">${parseFloat(product.price).toFixed(2)}</h4>
       {showDescription ? (
         <p className="product-description">{product.description}</p>
       ) : null}
-      <div className="media">
-        <Link to={`/products/${productId}`}>
-          {console.log("THIS IS THE PRODUCTID, ", productId)}
-          <img src={product.image} alt={product.description} />
-        </Link>
-      </div>
 
       <button className="add" onClick={() => handleAddItemToCart(product.id)}>
         Add Item
@@ -35,7 +35,7 @@ const ProductCard = ({
         Remove Item
       </button>
 
-      <p>quantity: ${quantity}</p>
+      {/* <p>quantity: ${quantity}</p> */}
 
       {quantity === 0 ? (
         <p className="product-quantity">Quantity: ${quantity}</p>

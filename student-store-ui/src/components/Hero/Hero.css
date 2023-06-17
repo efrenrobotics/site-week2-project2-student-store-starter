@@ -1,0 +1,44 @@
+.hero {
+  background: linear-gradient(to bottom right, #394d63, #00aaff);
+  height: 400px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex: 1;
+}
+
+.hero-text {
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: #fff;
+  text-align: center;
+}
+
+h2 {
+  font-size: 28px;
+  color: #fff;
+  text-align: center;
+}
+
+.hero-info {
+  display: flex;
+  align-items: center;
+}
+
+.hero-img {
+  width: 200px;
+  height: auto;
+  margin-left: auto; /* Adjust the margin to move the image closer to the right */
+  margin-right: 20px;
+}

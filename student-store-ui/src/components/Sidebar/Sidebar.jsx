@@ -23,17 +23,15 @@ const SideBar = ({
   handleOnSubmitCheckoutForm,
   handleOnToggle,
 }) => {
-  let navClass = isOpen ? "sidebar-open" : "sidebar-close";
-  console.log("these are the products " + products);
-
+  let navclassName = isOpen ? "sidebar-open" : "sidebar-close";
   return (
     <div className="container">
       <section className="sidebar">
-        <div className={navClass}>
+        <div className={navclassName}>
           <ShoppingCart />
           <CheckoutForm />
           <p>Sidebar</p>
-          <p>Open State: {navClass}</p>
+          <p>Open State: {navclassName}</p>
           <button className="toggle-button" onClick={handleOnToggle}>
             toggle sidebar
           </button>

@@ -3,13 +3,15 @@ import { useState, useEffect } from "react";
 import "./App.css";
 /* Router Imports */
 import { BrowserRouter } from "react-router-dom";
-import { Router, Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 /* Component Imports */
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import Home from "../Home/Home";
 import Footer from "../Footer/Footer";
 import ProductDetail from "../ProductDetail/ProductDetail";
+import AboutUs from "../AboutUs/AboutUs";
+import ContactUs from "../ContactUs/ContactUs";
 /* Axios Imports */
 import axios from "axios";
 
@@ -55,7 +57,7 @@ export default function App() {
 
   const [error, setError] = useState("");
 
-  let [isOpen, setIsOpen] = useState(true);
+  let [isOpen, setIsOpen] = useState(false);
 
   const [shoppingCart, setShoppingCart] = useState({
     order: [
@@ -83,9 +85,9 @@ export default function App() {
 
   /* Event Handlers */
   const handleOnToggle = () => {
-    console.log("IsOpen: " + open.value);
-    setIsOpen(!open);
+    setIsOpen(!isOpen);
   };
+
   const handleAddItemToCart = () => {};
   const handleRemoveItemFromCart = () => {};
   const handleOnCheckoutFormChange = () => {};
@@ -118,11 +120,19 @@ export default function App() {
                   />
                 }
               />
-              <Route path="/about-us" />
-              <Route path="/contact-us" />
-              <Route path="/buy-now" />
-              <Route path="/product/:productId" element={<ProductDetail />} />
+              <Route path="/about-us" element={<AboutUs />} />
+              <Route path="/contact-us" element={<ContactUs />} />
+              <Route
+                path="/products/:productId"
+                element={
+                  <ProductDetail
+                    handleAddItemToCart={handleAddItemToCart}
+                    handleRemoveItemToCart={handleRemoveItemFromCart}
+                  />
+                }
+              />
               <Route path="*" />
+              {/* </Route> */}
             </Routes>
           </div>
         </div>

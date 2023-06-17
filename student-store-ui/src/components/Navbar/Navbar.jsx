@@ -18,7 +18,7 @@ const Navbar = ({ products, setProducts }) => {
           <Link to="/contact-us">Contact Us</Link>
         </li>
         <li>
-          <Link to="/buy-now">Buy Now</Link>
+          <Link to="/">Buy Now</Link>
         </li>
       </ul>
     </div>

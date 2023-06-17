@@ -1,16 +1,23 @@
 .product-card {
-  height: 350px;
-  width: 250px;
-  background: var(--pure-white);
-  display: flex;
-  flex-direction: column;
-  border: solid 1px var(--border-color);
+  display: inline-block;
+  text-align: center;
+  border-radius: 4px;
+  margin: 20px;
+  font-family: "Nunito Sans", sans-serif;
+  padding-bottom: 10px;
+  width: 17%;
+  height: 30%;
 }
 
-.product-card .media {
-  height: 250px;
+.product-card img {
+  height: 300px;
   width: 100%;
 }
+
+/* .product-card .media {
+  height: 250px;
+  width: 100%;
+} */
 
 .product-card .product-info {
   flex: 1;
