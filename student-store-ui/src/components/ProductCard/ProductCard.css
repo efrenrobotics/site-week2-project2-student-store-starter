@@ -14,11 +14,6 @@
   width: 100%;
 }
 
-/* .product-card .media {
-  height: 250px;
-  width: 100%;
-} */
-
 .product-card .product-info {
   flex: 1;
   display: flex;

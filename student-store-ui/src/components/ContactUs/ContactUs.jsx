@@ -65,7 +65,7 @@ const ContactUs = () => {
             </li>
           </ul>
           <div className="media">
-            <img src="/assets/happy_person.517b658d.svg" alt="codepath large" />
+            <img src="../img/codepath.png" alt="codepath large" />
           </div>
         </div>
       </div>

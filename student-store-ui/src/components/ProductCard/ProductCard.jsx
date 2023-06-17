@@ -35,8 +35,6 @@ const ProductCard = ({
         Remove Item
       </button>
 
-      {/* <p>quantity: ${quantity}</p> */}
-
       {quantity === 0 ? (
         <p className="product-quantity">Quantity: ${quantity}</p>
       ) : null}

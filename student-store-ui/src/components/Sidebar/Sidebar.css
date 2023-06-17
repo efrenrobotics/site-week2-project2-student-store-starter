@@ -1,24 +1,43 @@
 .container {
   display: flex;
-  height: 100vh;
+  height: auto;
 }
 
 .sidebar {
-  height: 100%;
+  background-color: #0b4f6c;
+  width: 200px;
+  height: auto;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .sidebar-open {
-  background-color: gray;
-  height: 100vh;
-  min-width: 350px;
-  width: 300px;
+  background-color: #0b4f6c;
+  width: 350px;
+  height: auto;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.sidebar-close {
-  background-color: aqua;
-  height: 100vh;
-  width: 150px;
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.sidebar-button {
+.sidebar-menu li {
+  margin-bottom: 10px;
+}
+
+.sidebar-menu li a {
+  color: #333;
+  text-decoration: none;
+  display: block;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-menu li a:hover {
+  background-color: #eaeaea;
 }

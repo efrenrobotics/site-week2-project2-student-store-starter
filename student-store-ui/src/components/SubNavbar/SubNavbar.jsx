@@ -33,23 +33,27 @@ const SubNavbar = ({ products, setProducts }) => {
   }, [searchTerm, products]);
 
   return (
-    <div>
-      <form className="search-form">
-        <input
-          className="search-input"
-          type="text"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={handleSearchQuery}
-        />
-      </form>
-
-      <button>Toggle</button>
-      <SearchButtons handleClick={handleClick} />
-
-      {filteredData.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div className="subbar">
+      <div className="search-and-buttons">
+        <form className="search-form">
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={handleSearchQuery}
+          />
+        </form>
+        <div className="cont">
+          <button className="button">Toggle</button>
+          <SearchButtons handleClick={handleClick} />
+        </div>
+      </div>
+      <div className="prod-grid">
+        {filteredData.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
     </div>
   );
 };

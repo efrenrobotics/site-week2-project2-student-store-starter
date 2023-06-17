@@ -30,7 +30,6 @@ const ProductDetail = ({ handleAddItemToCart, handleRemoveItemToCart }) => {
 
   return (
     <div className="product-detail">
-      <p> ProductId: {productId}</p>
       <ProductView product={curProduct} />
     </div>
   );

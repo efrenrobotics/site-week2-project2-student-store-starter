@@ -5,6 +5,11 @@
   margin: 40px 0;
 }
 
+.about-title {
+  color: black;
+  text-align: left;
+}
+
 .about .content {
   max-width: var(--content-width);
   width: 100%;

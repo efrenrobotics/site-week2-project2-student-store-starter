@@ -1,21 +1,22 @@
 import React from "react";
+import "./SearchButtons.css";
 
 const SearchButtons = ({ handleClick }) => {
   return (
-    <div>
-      <button value="all-categories" onClick={handleClick}>
+    <div className="btn-container">
+      <button className="button" value={null} onClick={handleClick}>
         All Categories
       </button>
-      <button value="clothing" onClick={handleClick}>
+      <button className="button" value="clothing" onClick={handleClick}>
         Clothing
       </button>
-      <button value="food" onClick={handleClick}>
+      <button className="button" value="food" onClick={handleClick}>
         Food
       </button>
-      <button value="accessories" onClick={handleClick}>
+      <button className="button" value="accessories" onClick={handleClick}>
         Accessories
       </button>
-      <button value="tech" onClick={handleClick}>
+      <button className="button" value="tech" onClick={handleClick}>
         Tech
       </button>
     </div>

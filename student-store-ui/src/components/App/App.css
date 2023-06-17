@@ -19,3 +19,7 @@
   flex-direction: column;
   border: solid 1px var(--border-color);
 }
+
+.container {
+  min-height: 85vh;
+}
