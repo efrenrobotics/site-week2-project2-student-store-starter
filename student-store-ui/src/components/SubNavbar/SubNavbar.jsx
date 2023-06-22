@@ -12,10 +12,10 @@ const SubNavbar = ({ products, setProducts }) => {
   };
 
   const handleSearch = () => {
-    const filteredProducts = products.filter((product) => {
-      return product.name.toLowerCase().includes(searchTerm.toLowerCase());
-    });
-    setFilteredData(filteredProducts);
+    // const filteredProducts = products.filter((product) => {
+    //   return product.name.toLowerCase().includes(searchTerm.toLowerCase());
+    // });
+    // setFilteredData(filteredProducts);
   };
 
   const handleClick = (event) => {

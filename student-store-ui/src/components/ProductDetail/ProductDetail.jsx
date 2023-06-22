@@ -1,18 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import ProductView from "../ProductView/ProductView";
 import { useParams } from "react-router-dom";
+import ProductView from "../ProductView/ProductView";
 import NotFound from "../NotFound/NotFound";
 import axios from "axios";
 
 const ProductDetail = ({ handleAddItemToCart, handleRemoveItemToCart }) => {
-  console.log("PAGE IS REACHED");
-  const url = `https://codepath-store-api.herokuapp.com/store/`;
+  const url = `http://localhost:3001/store`;
   const [curProduct, setCurProduct] = useState({});
   const [loading, setLoading] = useState(true);
   const { productId } = useParams();
   useEffect(() => {
     try {
+      console.log(`${url}${productId}`);
       axios.get(`${url}${productId}`).then((response) => {
         setCurProduct(response.data.product);
         setLoading(false);
@@ -21,8 +21,6 @@ const ProductDetail = ({ handleAddItemToCart, handleRemoveItemToCart }) => {
       setLoading(false);
     }
   }, [productId]);
-
-  console.log("This is the product ", curProduct);
 
   if (loading) {
     return <h1 className="loading">Loading...</h1>;

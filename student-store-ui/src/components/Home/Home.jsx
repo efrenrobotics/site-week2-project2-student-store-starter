@@ -4,9 +4,11 @@ import "./Home.css";
 import Hero from "../Hero/Hero";
 import ProductGrid from "../ProductGrid/ProductGrid";
 import SubNavbar from "../SubNavbar/SubNavbar";
+
 import AboutUs from "../AboutUs/AboutUs";
 import ContactUs from "../ContactUs/ContactUs";
 import Footer from "../Footer/Footer";
+
 const Home = ({ products, handleAddItemToCart, handleRemoveItemToCart }) => {
   const [filteredProducts, setFilteredProducts] = useState(products);
 

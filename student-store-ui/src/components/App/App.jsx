@@ -12,6 +12,7 @@ import Footer from "../Footer/Footer";
 import ProductDetail from "../ProductDetail/ProductDetail";
 import AboutUs from "../AboutUs/AboutUs";
 import ContactUs from "../ContactUs/ContactUs";
+import NotFound from "../NotFound/NotFound";
 /* Axios Imports */
 import axios from "axios";
 
@@ -48,7 +49,7 @@ import axios from "axios";
 
 export default function App() {
   /* Products JSON from codepath store API */
-  const url = `https://codepath-store-api.herokuapp.com/store`;
+  const url = `http://localhost:3001/store`;
 
   /* State Variables and Setter Functions */
   const [products, setProducts] = useState([]);
@@ -75,7 +76,7 @@ export default function App() {
     axios
       .get(url)
       .then((response) => {
-        setProducts(response.data.products);
+        setProducts(response.data);
       })
       .catch((error) => {
         console.error(`error: ${error}`);
@@ -131,8 +132,7 @@ export default function App() {
                   />
                 }
               />
-              <Route path="*" />
-              {/* </Route> */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
         </div>
