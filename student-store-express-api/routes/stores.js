@@ -21,11 +21,6 @@ router.get("/store/:productId", (req, res) => {
   res.json(product);
 });
 
-// router.get("/store", (req, res) => {
-//   const store = storeModel.createPurchaseModel();
-//   res.json(store);
-// });
-
 router.get("*");
 
 module.exports = router;

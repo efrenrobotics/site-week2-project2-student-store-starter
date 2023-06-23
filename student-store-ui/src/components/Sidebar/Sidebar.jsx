@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./Sidebar.css";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import CartTable from "../CartTable/CartTable";
 
 /* 
   isOpen - open/close state of sidebar
@@ -26,13 +27,19 @@ const SideBar = ({
   let navclassName = !isOpen ? "sidebar" : "sidebar-open";
   return (
     <div className={navclassName}>
-      <ShoppingCart />
-      <CheckoutForm />
-      <p>Sidebar</p>
-      <p>Open State: {navclassName}</p>
       <button className="toggle-button" onClick={handleOnToggle}>
         toggle sidebar
       </button>
+      {isOpen ? (
+        <div>
+          <CartTable />
+          <ShoppingCart />
+          <CheckoutForm />
+        </div>
+      ) : null}
+
+      <p>Sidebar</p>
+      <p>Open State: {navclassName}</p>
     </div>
   );
 };

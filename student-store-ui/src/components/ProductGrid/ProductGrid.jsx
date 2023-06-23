@@ -5,6 +5,7 @@ const ProductGrid = ({
   products,
   handleAddItemToCart,
   handleRemoveItemToCart,
+  handleGetTotalItems,
 }) => {
   return (
     <div className="product-grid">
@@ -14,6 +15,9 @@ const ProductGrid = ({
           key={product.id}
           product={product}
           showDescription={false}
+          handleAddItemToCart={() => handleAddItemToCart(product)}
+          handleRemoveItemToCart={() => handleRemoveItemToCart(product)}
+          handleGetTotalItems={() => handleGetTotalItems()}
         />
       ))}
     </div>

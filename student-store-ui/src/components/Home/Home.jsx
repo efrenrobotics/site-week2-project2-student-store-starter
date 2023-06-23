@@ -9,7 +9,12 @@ import AboutUs from "../AboutUs/AboutUs";
 import ContactUs from "../ContactUs/ContactUs";
 import Footer from "../Footer/Footer";
 
-const Home = ({ products, handleAddItemToCart, handleRemoveItemToCart }) => {
+const Home = ({
+  products,
+  handleAddItemToCart,
+  handleRemoveItemToCart,
+  handleGetTotalItems,
+}) => {
   const [filteredProducts, setFilteredProducts] = useState(products);
 
   const handleSearch = (filteredData) => {
@@ -24,6 +29,7 @@ const Home = ({ products, handleAddItemToCart, handleRemoveItemToCart }) => {
         products={filteredProducts}
         handleAddItemToCart={handleAddItemToCart}
         handleRemoveItemToCart={handleRemoveItemToCart}
+        handleGetTotalItems={handleGetTotalItems}
       />
     </div>
   );

@@ -1,0 +1,25 @@
+.shopping-cart {
+  width: 100%;
+  color: #fff;
+}
+
+.shopping-cart .open {
+  max-width: 550px;
+}
+
+.shopping-cart .open > h3 {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shopping-cart .open > h3 > span {
+  margin-left: 10px;
+}
+
+.shopping-cart .notification {
+  color: #fff;
+  text-align: center;
+  margin: 10px;
+}

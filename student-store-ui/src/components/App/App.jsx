@@ -13,6 +13,7 @@ import ProductDetail from "../ProductDetail/ProductDetail";
 import AboutUs from "../AboutUs/AboutUs";
 import ContactUs from "../ContactUs/ContactUs";
 import NotFound from "../NotFound/NotFound";
+import CartTable from "../CartTable/CartTable";
 /* Axios Imports */
 import axios from "axios";
 
@@ -56,88 +57,141 @@ export default function App() {
 
   const [isFetching, setIsFetching] = useState(true);
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
 
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const [shoppingCart, setShoppingCart] = useState({
-    order: [
-      {
-        itemId: null,
-        quantity: 0,
-      },
-    ],
-  });
+  const [priceOfCart, setPriceOfCart] = useState(0);
 
   const [checkoutForm, setCheckoutForm] = useState(null);
 
-  /* Fetching Data */
-  useEffect(() => {
-    axios
-      .get(url)
-      .then((response) => {
-        setProducts(response.data);
-      })
-      .catch((error) => {
-        console.error(`error: ${error}`);
-        setError(error);
-      });
-  }, []);
+  const [inputSearch, setInputSearch] = useState("");
+
+  /* ShoppingCart{
+    idName : Quantity
+  }*/
+  const [shoppingCart, setShoppingCart] = useState([]);
+
+  const [activeCategory, setActiveCategory] = useState("All Categories");
 
   /* Event Handlers */
+  const handleAddItemToCart = (item) => {
+    setShoppingCart((cart) => {
+      const updatedCart = [...cart];
+      const existingItemIndex = updatedCart.findIndex(
+        (cartItem) => cartItem.id === item.id
+      );
+
+      if (existingItemIndex !== -1) {
+        updatedCart[existingItemIndex].quantity += 1;
+      } else {
+        updatedCart.push({ id: item.id, quantity: 1 });
+      }
+
+      return updatedCart;
+    });
+  };
+
+  const handleRemoveItemFromCart = (item) => {
+    setShoppingCart((cart) => {
+      const updatedCart = [...cart];
+      const existingItemIndex = updatedCart.findIndex(
+        (cartItem) => cartItem.id === item.id
+      );
+
+      if (existingItemIndex !== -1) {
+        updatedCart[existingItemIndex].quantity -= 1;
+
+        if (updatedCart[existingItemIndex].quantity <= 0) {
+          updatedCart.splice(existingItemIndex, 1);
+        }
+      }
+
+      return updatedCart;
+    });
+  };
+
+  const handleGetTotalItems = () => {
+    const quantities = Object.values(cart);
+    return quantities.reduce((sum, quantity) => {
+      return sum + quantity;
+    }, 0);
+  };
+
   const handleOnToggle = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleAddItemToCart = () => {};
-  const handleRemoveItemFromCart = () => {};
   const handleOnCheckoutFormChange = () => {};
   const handleOnSubmitCheckoutForm = () => {};
+
+  const handleSearchInputChage = (e) => {
+    setInputSearch(e.target.value);
+  };
+
+  /* Initial Fetching Data - grabs */
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsFetching(true);
+      try {
+        const res = await axios.get(url);
+        setProducts(res.data);
+      } catch (e) {
+        console.error(`error: ${error}`);
+        setError(error);
+      } finally {
+        setIsFetching(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="app">
       <BrowserRouter>
         {/* ALWAYS RENDER NAVBAR & SIDEBAR */}
-        <Navbar />
+        <main>
+          <Navbar />
+          <div className="container">
+            {/* <section className={isOpen ? "sidebar open" : "sidebar close"}> */}
+            <Sidebar
+              handleOnToggle={handleOnToggle}
+              isOpen={isOpen}
+              products={products}
+            />
+            {/* </section> */}
 
-        {/* Hero */}
-        {/* Sub Nav Bar - Categories*/}
-        {/* Home - Product Grid */}
-        <div className="container">
-          <Sidebar
-            handleOnToggle={handleOnToggle}
-            isOpen={isOpen}
-            products={products}
-          />
-          <div className="main-content">
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Home
-                    products={products}
-                    handleAddItemToCart={handleAddItemToCart}
-                    handleRemoveItemToCart={handleRemoveItemFromCart}
-                  />
-                }
-              />
-              <Route path="/about-us" element={<AboutUs />} />
-              <Route path="/contact-us" element={<ContactUs />} />
-              <Route
-                path="/products/:productId"
-                element={
-                  <ProductDetail
-                    handleAddItemToCart={handleAddItemToCart}
-                    handleRemoveItemToCart={handleRemoveItemFromCart}
-                  />
-                }
-              />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <div className="main-content">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <Home
+                      products={products}
+                      handleAddItemToCart={handleAddItemToCart}
+                      handleRemoveItemToCart={handleRemoveItemFromCart}
+                      handleGetTotalItems={handleGetTotalItems}
+                    />
+                  }
+                />
+                <Route path="/about-us" element={<AboutUs />} />
+                <Route path="/contact-us" element={<ContactUs />} />
+                <Route
+                  path="/products/:productId"
+                  element={
+                    <ProductDetail
+                      handleAddItemToCart={handleAddItemToCart}
+                      handleRemoveItemToCart={handleRemoveItemFromCart}
+                    />
+                  }
+                />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
           </div>
-        </div>
 
-        <Footer />
+          <Footer />
+        </main>
       </BrowserRouter>
     </div>
   );

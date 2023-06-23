@@ -8,6 +8,7 @@ const ProductCard = ({
   quantity,
   handleAddItemToCart,
   handleRemoveItemToCart,
+  handleGetTotalItems,
   showDescription,
 }) => {
   return (
@@ -24,14 +25,11 @@ const ProductCard = ({
         <p className="product-description">{product.description}</p>
       ) : null}
 
-      <button className="add" onClick={() => handleAddItemToCart(product.id)}>
+      <button className="add" onClick={handleAddItemToCart}>
         Add Item
       </button>
 
-      <button
-        className="remove"
-        onClick={() => handleRemoveItemToCart(product.id)}
-      >
+      <button className="remove" onClick={handleRemoveItemToCart}>
         Remove Item
       </button>
 

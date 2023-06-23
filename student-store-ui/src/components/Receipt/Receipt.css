@@ -1,0 +1,36 @@
+shopping-cart .receipt {
+  display: flex;
+  flex-direction: column;
+  background: var(--pure-white);
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.receipt span {
+  flex: 1;
+}
+
+.receipt span.center {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.receipt .receipt-subtotal,
+.shopping-cart .receipt .receipt-taxes,
+.shopping-cart .receipt .receipt-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.receipt .receipt-total {
+  border-top: solid 1px var(--border-color);
+}
+
+.receipt .label {
+  font-weight: 600;
+  padding-left: 10px;
+}
