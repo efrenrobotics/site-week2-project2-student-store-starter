@@ -3,7 +3,7 @@ import ProductRow from "../ProductRow/ProductRow";
 import Receipt from "../Receipt/Receipt";
 import "./CartTable.css";
 
-const CartTable = () => {
+const CartTable = ({ shoppingCart, products }) => {
   return (
     <div>
       <div className="CartTable">
@@ -15,8 +15,18 @@ const CartTable = () => {
             <span className="center">Cost</span>
           </div>
 
-          <ProductRow />
-          <Receipt />
+          {shoppingCart.map((cartItem) => {
+            return (
+              <ProductRow
+                key={cartItem.id}
+                prodId={cartItem.id}
+                quantity={cartItem.quantity}
+                products={products}
+              />
+            );
+          })}
+
+          <Receipt shoppingCart={shoppingCart} products={products} />
         </div>
       </div>
     </div>

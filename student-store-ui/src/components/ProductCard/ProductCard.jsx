@@ -1,6 +1,9 @@
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./ProductCard.css";
+
+// import handleAddItemToCart from "../handleAddItemToCart";
 
 const ProductCard = ({
   product,
@@ -11,6 +14,8 @@ const ProductCard = ({
   handleGetTotalItems,
   showDescription,
 }) => {
+  const [quantities, setQuantities] = useState(0);
+
   return (
     <div className="product-card">
       <div className="media">
@@ -25,17 +30,20 @@ const ProductCard = ({
         <p className="product-description">{product.description}</p>
       ) : null}
 
-      <button className="add" onClick={handleAddItemToCart}>
+      <button className="add" onClick={() => handleAddItemToCart(product)}>
         Add Item
       </button>
 
-      <button className="remove" onClick={handleRemoveItemToCart}>
+      <button
+        className="remove"
+        onClick={() => handleRemoveItemToCart(product)}
+      >
         Remove Item
       </button>
 
-      {quantity === 0 ? (
+      {quantities > 0 && (
         <p className="product-quantity">Quantity: ${quantity}</p>
-      ) : null}
+      )}
     </div>
   );
 };

@@ -1,36 +1,31 @@
-shopping-cart .receipt {
+.receipt {
+  width: 300px;
+  padding: 20px;
+  background-color: #7d938a;
+  border: 1px solid #ccc;
   display: flex;
-  flex-direction: column;
-  background: var(--pure-white);
-  border-radius: 4px;
-  width: 100%;
-  margin-top: 10px;
+  justify-content: space-between;
 }
 
-.receipt span {
-  flex: 1;
-}
-
-.receipt span.center {
-  display: flex;
-  justify-content: center;
-  font-weight: 600;
-}
-
-.receipt .receipt-subtotal,
-.shopping-cart .receipt .receipt-taxes,
-.shopping-cart .receipt .receipt-total {
+.receipt-subtotal,
+.receipt-taxes,
+.receipt-total {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 5px 0;
+  margin-bottom: 10px;
 }
 
-.receipt .receipt-total {
-  border-top: solid 1px var(--border-color);
+.receipt-subtotal span.label,
+.receipt-taxes span.label,
+.receipt-total span.label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-.receipt .label {
-  font-weight: 600;
-  padding-left: 10px;
+.receipt-subtotal span.subtotal,
+.receipt-total span.total-price {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }

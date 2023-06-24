@@ -6,6 +6,7 @@ const ProductGrid = ({
   handleAddItemToCart,
   handleRemoveItemToCart,
   handleGetTotalItems,
+  handleGetQuantity,
 }) => {
   return (
     <div className="product-grid">
@@ -15,9 +16,10 @@ const ProductGrid = ({
           key={product.id}
           product={product}
           showDescription={false}
-          handleAddItemToCart={() => handleAddItemToCart(product)}
-          handleRemoveItemToCart={() => handleRemoveItemToCart(product)}
-          handleGetTotalItems={() => handleGetTotalItems()}
+          handleAddItemToCart={handleAddItemToCart}
+          handleRemoveItemToCart={handleRemoveItemToCart}
+          handleGetTotalItems={handleGetTotalItems}
+          handleGetQuantity={handleGetQuantity}
         />
       ))}
     </div>

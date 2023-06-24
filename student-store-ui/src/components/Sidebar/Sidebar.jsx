@@ -17,12 +17,13 @@ import CartTable from "../CartTable/CartTable";
 
 const SideBar = ({
   isOpen,
+  checkoutForm,
   shoppingCart,
   products,
-  checkoutForm,
   handleOnCheckoutFormChange,
   handleOnSubmitCheckoutForm,
   handleOnToggle,
+  setShoppingCart,
 }) => {
   let navclassName = !isOpen ? "sidebar" : "sidebar-open";
   return (
@@ -32,9 +33,12 @@ const SideBar = ({
       </button>
       {isOpen ? (
         <div>
-          <CartTable />
-          <ShoppingCart />
-          <CheckoutForm />
+          <CartTable shoppingCart={shoppingCart} products={products} />
+          <CheckoutForm
+            shoppingCart={shoppingCart}
+            setShoppingCart={setShoppingCart}
+            // handleOnCheckoutFormChange={handleOnCheckoutFormChange}
+          />
         </div>
       ) : null}
 

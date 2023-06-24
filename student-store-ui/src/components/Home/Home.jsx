@@ -2,7 +2,6 @@ import * as React from "react";
 import { useState } from "react";
 import "./Home.css";
 import Hero from "../Hero/Hero";
-import ProductGrid from "../ProductGrid/ProductGrid";
 import SubNavbar from "../SubNavbar/SubNavbar";
 
 import AboutUs from "../AboutUs/AboutUs";
@@ -14,6 +13,8 @@ const Home = ({
   handleAddItemToCart,
   handleRemoveItemToCart,
   handleGetTotalItems,
+  handleGetQuantity,
+  handleOnCheckoutFormChange,
 }) => {
   const [filteredProducts, setFilteredProducts] = useState(products);
 
@@ -24,12 +25,14 @@ const Home = ({
   return (
     <div className="home">
       <Hero />
-      <SubNavbar products={products} handleSearch={handleSearch} />
-      <ProductGrid
-        products={filteredProducts}
+      <SubNavbar
+        products={products}
+        handleSearch={handleSearch}
         handleAddItemToCart={handleAddItemToCart}
         handleRemoveItemToCart={handleRemoveItemToCart}
         handleGetTotalItems={handleGetTotalItems}
+        handleGetQuantity={handleGetQuantity}
+        handleOnCheckoutFormChange={handleOnCheckoutFormChange}
       />
     </div>
   );

@@ -5,8 +5,12 @@ import ProductView from "../ProductView/ProductView";
 import NotFound from "../NotFound/NotFound";
 import axios from "axios";
 
-const ProductDetail = ({ handleAddItemToCart, handleRemoveItemToCart }) => {
-  const url = `http://localhost:3001/store`;
+const ProductDetail = ({
+  handleAddItemToCart,
+  handleRemoveItemToCart,
+  setShoppingCart,
+}) => {
+  const url = `http://localhost:3001/store/`;
   const [curProduct, setCurProduct] = useState({});
   const [loading, setLoading] = useState(true);
   const { productId } = useParams();

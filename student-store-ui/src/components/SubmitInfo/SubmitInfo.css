@@ -1,0 +1,18 @@
+.purchase-thanks {
+  margin: 0 auto;
+  background-color: #c57b57;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.purchase-thanks h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.purchase-thanks p {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: black;
+}

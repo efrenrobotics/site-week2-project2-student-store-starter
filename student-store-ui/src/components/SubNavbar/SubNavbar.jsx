@@ -2,8 +2,17 @@ import React, { useState, useEffect } from "react";
 import "./SubNavbar.css";
 import SearchButtons from "../SearchButtons/SearchButtons";
 import ProductCard from "../ProductCard/ProductCard";
+import ProductGrid from "../ProductGrid/ProductGrid";
 
-const SubNavbar = ({ products, setProducts }) => {
+const SubNavbar = ({
+  products,
+  setProducts,
+  handleAddItemToCart,
+  handleRemoveItemToCart,
+  handleGetTotalItems,
+  handleGetQuantity,
+  handleOnCheckoutFormChange,
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState(products);
 
@@ -12,10 +21,10 @@ const SubNavbar = ({ products, setProducts }) => {
   };
 
   const handleSearch = () => {
-    // const filteredProducts = products.filter((product) => {
-    //   return product.name.toLowerCase().includes(searchTerm.toLowerCase());
-    // });
-    // setFilteredData(filteredProducts);
+    const filteredProducts = products.filter((product) => {
+      return product.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    setFilteredData(filteredProducts);
   };
 
   const handleClick = (event) => {
@@ -50,9 +59,13 @@ const SubNavbar = ({ products, setProducts }) => {
         </div>
       </div>
       <div className="prod-grid">
-        {filteredData.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        <ProductGrid
+          products={filteredData}
+          handleAddItemToCart={handleAddItemToCart}
+          handleRemoveItemToCart={handleRemoveItemToCart}
+          handleGetTotalItems={handleGetTotalItems}
+          handleGetQuantity={handleGetQuantity}
+        />
       </div>
     </div>
   );

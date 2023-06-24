@@ -16,6 +16,7 @@ import NotFound from "../NotFound/NotFound";
 import CartTable from "../CartTable/CartTable";
 /* Axios Imports */
 import axios from "axios";
+import SubmitInfo from "../SubmitInfo/SubmitInfo";
 
 /* 
 │
@@ -30,12 +31,13 @@ import axios from "axios";
     │
     ├── Home (the `/` route)
     │   └── Hero
-    │   └── ProductGrid
-    │       ├── ProductCard
-    │       ├── ProductCard
-    │       ├── ... as many as needed
-    │       ├── ProductCard
-    │       └── ProductCard
+    |   └── SubNavBar
+    │       └── ProductGrid
+    │           ├── ProductCard
+    │           ├── ProductCard
+    │           ├── ... as many as needed
+    │           ├── ProductCard
+    │           └── ProductCard
     │
     ├── ProductDetail (the `/products/:productId` route)
     │   ├── ProductView
@@ -68,7 +70,7 @@ export default function App() {
   const [inputSearch, setInputSearch] = useState("");
 
   /* ShoppingCart{
-    idName : Quantity
+    id : Quantity
   }*/
   const [shoppingCart, setShoppingCart] = useState([]);
 
@@ -83,13 +85,14 @@ export default function App() {
       );
 
       if (existingItemIndex !== -1) {
-        updatedCart[existingItemIndex].quantity += 1;
+        updatedCart[existingItemIndex].quantity += 0.5;
       } else {
         updatedCart.push({ id: item.id, quantity: 1 });
       }
 
       return updatedCart;
     });
+    console.log({ shoppingCart });
   };
 
   const handleRemoveItemFromCart = (item) => {
@@ -100,34 +103,45 @@ export default function App() {
       );
 
       if (existingItemIndex !== -1) {
-        updatedCart[existingItemIndex].quantity -= 1;
+        updatedCart[existingItemIndex].quantity -= 0.5;
 
         if (updatedCart[existingItemIndex].quantity <= 0) {
           updatedCart.splice(existingItemIndex, 1);
         }
       }
-
       return updatedCart;
     });
   };
 
   const handleGetTotalItems = () => {
-    const quantities = Object.values(cart);
-    return quantities.reduce((sum, quantity) => {
-      return sum + quantity;
-    }, 0);
+    let totalItems = 0;
+    shoppingCart.map((item) => {
+      totalItems += item.quantity;
+    });
+    return totalItems;
+  };
+
+  const handleGetQuantity = (item) => {
+    const existingItemIndex = shoppingCart.findIndex(
+      (cartItem) => cartItem.id === item.id
+    );
+    if (existingItemIndex === 0) {
+      return 0;
+    } else {
+      return shoppingCart.find(existingItemIndex).quantity;
+    }
   };
 
   const handleOnToggle = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleOnCheckoutFormChange = () => {};
-  const handleOnSubmitCheckoutForm = () => {};
-
-  const handleSearchInputChage = (e) => {
-    setInputSearch(e.target.value);
+  const handleOnCheckoutFormChange = () => {
+    console.log(`log`);
+    setShoppingCart([]);
+    <SubmitInfo email="efren@gmail.com" name="efren" />;
   };
+  const handleOnSubmitCheckoutForm = () => {};
 
   /* Initial Fetching Data - grabs */
   useEffect(() => {
@@ -137,8 +151,8 @@ export default function App() {
         const res = await axios.get(url);
         setProducts(res.data);
       } catch (e) {
-        console.error(`error: ${error}`);
         setError(error);
+        console.error(e);
       } finally {
         setIsFetching(false);
       }
@@ -153,13 +167,14 @@ export default function App() {
         <main>
           <Navbar />
           <div className="container">
-            {/* <section className={isOpen ? "sidebar open" : "sidebar close"}> */}
             <Sidebar
               handleOnToggle={handleOnToggle}
               isOpen={isOpen}
               products={products}
+              shoppingCart={shoppingCart}
+              setShoppingCart={setShoppingCart}
+              // handleOnCheckoutFormChange={handleOnCheckoutFormChange}
             />
-            {/* </section> */}
 
             <div className="main-content">
               <Routes>
@@ -171,6 +186,8 @@ export default function App() {
                       handleAddItemToCart={handleAddItemToCart}
                       handleRemoveItemToCart={handleRemoveItemFromCart}
                       handleGetTotalItems={handleGetTotalItems}
+                      handleGetQuantity={handleGetQuantity}
+                      handleOnCheckoutFormChange={handleOnCheckoutFormChange}
                     />
                   }
                 />
@@ -182,6 +199,8 @@ export default function App() {
                     <ProductDetail
                       handleAddItemToCart={handleAddItemToCart}
                       handleRemoveItemToCart={handleRemoveItemFromCart}
+                      handleGetTotalItems={handleGetTotalItems}
+                      handleGetQuantity={handleGetQuantity}
                     />
                   }
                 />
